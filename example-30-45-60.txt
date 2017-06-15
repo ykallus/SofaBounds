@@ -1,0 +1,14 @@
+#
+# SofaBounds profile file
+#
+#
+
+setcorr 3
+setslope 1 33 56 65
+setslope 2 119 120 169
+setslope 3 56 33 65
+setfinalmin 1 0 1
+setfinalmax 1 0 1
+reportevery 0 sec
+reportevery 0 iter
+reportevery 0.01 jump
