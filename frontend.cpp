@@ -29,13 +29,11 @@ PythagoreanTriple corridor_slopes[MAX_CORRIDORS] = { 119, 120, 169};
 std::thread mythread;
 
 const std::string welcome_string = "SofaBounds version 1.0\n\nType \"help\" for instructions.\n\n";
-const std::string info_string = "SofaBounds version 1.0\n
-Created by Yoav Kallus and Dan Romik\n
-You are free to use and/or modify the software and source code. Enjoy!\n";
+const std::string info_string = "SofaBounds version 1.0\nCreated by Yoav Kallus and Dan Romik\nYou are free to use and/or modify the software and source code. Enjoy!\n";
 const std::string help_string = "\nSofaBounds version 1.0\n\n\
 Valid commands are: \n\
 help:\t\t\tprints this help message\n\
-info:\t\t\tprints version and license information\n
+info:\t\t\tprints version and license information\n\
 settings:\t\tprints current list of settings\n\
 quit:\t\t\tquit the program\n\
 setcorr [num]:\tset the number of corridors to [num]\n\
