@@ -61,8 +61,8 @@ struct box a_priori_bounds(struct bb_thread_params slopes, unsigned int i){
         newbox.coord_bound_intervals[2*i+1].left = 0;
         newbox.coord_bound_intervals[2*i+1].right = 0;
 
-	x1 = ExactRational(-slopes.intermediate[i].c,slopes.intermediate[i].a);
 	x2 = ExactRational(slopes.intermediate[i].c,slopes.intermediate[i].b);
+	x1 = -x2 * ExactRational(slopes.intermediate[i].c + slopes.intermediate[i].b,slopes.intermediate[i].a);
     } else {
 	//if beta < pi/2, this is done by finding smallest width that contains the intersection of H and the butterfly set
 	//set i to value such that no angle will be skipped in next loop
