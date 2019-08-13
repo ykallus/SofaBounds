@@ -251,20 +251,20 @@ Nef_polygon rotated_ell(struct slope myslope, struct interval xb, struct interva
         return N1.join(N2);
 
         case 3:
-        N1 = ell_side(myslope,xb,0,0,0,0).intersection(ell_side(myslope,xb,0,0,1,1)).intersection(ell_side(myslope,yb,1,0,1,1)); //left arm bottom
-        N2 = ell_side(myslope,xb,0,1,0,0).intersection(ell_side(myslope,xb,0,1,1,1)).intersection(ell_side(myslope,yb,1,1,1,1)); //left arm top
+        N1 = ell_side(myslope,xb,0,0,1,1).intersection(ell_side(myslope,yb,1,0,0,1)); //left arm bottom
+        N2 = ell_side(myslope,xb,0,1,0,0); //left arm top, the remaining intersections are included in the union polygon
         return N1.join(N2);
 
         case 4:
-        N3 = ell_side(myslope,yb,1,0,0,0).intersection(ell_side(myslope,yb,1,0,1,1)).intersection(ell_side(myslope,xb,0,0,1,1)); //right arm bottom
-        N4 = ell_side(myslope,yb,1,1,0,0).intersection(ell_side(myslope,yb,1,1,1,1)).intersection(ell_side(myslope,xb,0,1,1,1)); //right arm top
+        N3 = ell_side(myslope,yb,1,0,1,1).intersection(ell_side(myslope,xb,0,0,0,1)); //right arm bottom
+        N4 = ell_side(myslope,yb,1,1,0,0); //right arm top, the remaining intersections are included in the union polygon
         return N3.join(N4);
 
 
 	default:
-        N1 = ell_side(myslope,xb,0,0,0,0).intersection(ell_side(myslope,xb,0,1,1,1)).intersection(ell_side(myslope,yb,1,1,1,1)); //left arm
-        N2 = ell_side(myslope,yb,1,0,0,0).intersection(ell_side(myslope,yb,1,1,1,1)).intersection(ell_side(myslope,xb,0,1,1,1)); //right arm
-        return N1.join(N2);
+        N1 = ell_side(myslope,xb,0,1,1,1).intersection(ell_side(myslope,yb,1,1,1,1)); //outer corner
+        N2 = ell_side(myslope,xb,0,0,0,0).join(ell_side(myslope,yb,1,0,0,0)); //inner corner
+        return N1.intersection(N2);
 
     }
 
