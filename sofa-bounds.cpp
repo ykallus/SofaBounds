@@ -54,8 +54,8 @@ struct box a_priori_bounds(struct bb_thread_params slopes, unsigned int i){
     if (!slopes.has_final) {
 	//if beta = pi/2, this is done by fixing the u (second) coordinate for one angle at zero,
 	//and restricting the v (first) coordinate so that the intersection of the corridor with H
-	//is neither empy not disconnected
-        newbox.coord_bound_intervals[2*i+0].left = ExactRational(-slopes.intermediate[i].a,slopes.intermediate[i].b) - 1;
+	//is neither contained within another such intersection nor disconnected.
+        newbox.coord_bound_intervals[2*i+0].left = 0;
         newbox.coord_bound_intervals[2*i+0].right = ExactRational(slopes.intermediate[i].c,slopes.intermediate[i].b);
 
         newbox.coord_bound_intervals[2*i+1].left = 0;
@@ -73,17 +73,17 @@ struct box a_priori_bounds(struct bb_thread_params slopes, unsigned int i){
 
     for (j=0;j<slopes.num_intermediate;j++) {
 	//with x1,x2 determined, all corridors (except i, which has already been restricted)
-	//can be restricted to translations such that they intersect [x1,x2]X[0,1] with both wings
-	//of the corridor.
+	//can be restricted to translations such that the intersection with [x1,x2]X[0,1]
+	//is not contained within another such intersection.
 	if (j==i) continue;
 	s = ExactRational(slopes.intermediate[j].a,slopes.intermediate[j].c);
 	c = ExactRational(slopes.intermediate[j].b,slopes.intermediate[j].c);
 
-        newbox.coord_bound_intervals[2*j+0].left = -s*x2 - 1;
-        newbox.coord_bound_intervals[2*j+0].right = -s*x1 + c;
+        newbox.coord_bound_intervals[2*j+0].left = -s*x2 + (1-s) * s/c;
+        newbox.coord_bound_intervals[2*j+0].right = -s*x1 + c - 1;
 
-	newbox.coord_bound_intervals[2*j+1].left = c*x1 - 1;
-        newbox.coord_bound_intervals[2*j+1].right = c*x2 + s;
+        newbox.coord_bound_intervals[2*j+1].left = c*x1 + (1-c) * c/s;
+        newbox.coord_bound_intervals[2*j+1].right = c*x2 + s - 1;
     }
     newbox.depth = 0;
 
