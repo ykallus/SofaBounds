@@ -204,10 +204,11 @@ inline Nef_polygon ell_side(struct slope myslope, struct interval myinterval, in
     //because x is rational, need to multiply out by its denominator
     if (lowhi == 0) x = myinterval.left;
     else x = myinterval.right;
+    x *= mc;
 
     ci *= x.denominator();
 
-    ci -= x.numerator()*mc;
+    ci -= x.numerator();
     
     ai*=x.denominator();
     bi*=x.denominator();
