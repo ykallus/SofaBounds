@@ -233,8 +233,8 @@ Nef_polygon rotated_ell(struct slope myslope, struct interval xb, struct interva
     // if dim = 1, return union of the boundaries of such ells
     // if dim = 0, return union of the vertices of such ells
     //
-    // if dim = 3, return version of (dim = 1) with only left side
-    // if dim = 4, return version of (dim = 1) with only right side
+    // if dim = 3, when intersected with the_union, yields a left-side-only version of (dim = 1), intersected with same
+    // if dim = 4, same as (dim = 3) for right side
     
     Nef_polygon N1, N2, N3, N4;
 
