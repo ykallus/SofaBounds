@@ -1,7 +1,8 @@
 # sofa-bounds
 Calculates bounds on the sofa moving problem
 
-The program depends on CGAL (The Computational Geometry Algorithms Library) and GMP (GNU Multiple Precision Arithmetic Library)
+The program depends on CGAL (The Computational Geometry Algorithms Library) and GMP (GNU Multiple Precision Arithmetic Library).
+Tested to work with CGAL 4.12 and Boost 1.67.
 
 On a typical setup, you will compile the program with the following command:
 
